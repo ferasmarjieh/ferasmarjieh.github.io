@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Player</title>
+    <style>
+        /* Center the content */
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Horizontal centering */
+            justify-content: center; /* Vertical centering */
+            height: 100vh; /* Full viewport height */
+            margin: 0; /* Remove default margin */
+            text-align: center; /* Center text inside elements */
+            background-color: #f9f9f9; /* Light background */
+            font-family: Arial, sans-serif;
+        }
+
+        /* Add some styling to the header */
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        /* Style for the audio player */
+        audio {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Audio Player</h1>
+    <p>Enjoy some music using the HTML <code>audio</code> element:</p>
+
+    <!-- Audio Element -->
+    <audio controls>
+        <source src="whatislove.mp3" type="audio/mpeg">
+    </audio>
+</body>
+</html>
