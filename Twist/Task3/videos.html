@@ -52,7 +52,7 @@
 
 
     <!-- 3. Hidden YouTube Audio -->
-
+    <h2>The Hidden Audio Takes A Couple Of Seconds To Load, Be Patient Please</h2>
     <div style="display: none;">
         <iframe id="hiddenAudio"
                 src="https://www.youtube.com/embed/Pt1pOY3_W64?controls=0"
@@ -65,7 +65,7 @@
 
     <script>
         // Autoplay the hidden audio
-        window.onload = function() {
+        window.onload = function () {
             const iframe = document.getElementById('hiddenAudio');
             iframe.src += "&autoplay=1";
         };
