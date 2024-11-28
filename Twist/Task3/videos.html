@@ -53,12 +53,23 @@
 
     <!-- 3. Hidden YouTube Audio -->
 
-    <iframe src="https://www.youtube.com/embed/Pt1pOY3_W64?autoplay=1&mute=0&controls=0"
-            width="10"
-            height="10"
-            style="border: none;"
-            allow="autoplay; encrypted-media">
-    </iframe>
+    <div style="display: none;">
+        <iframe id="hiddenAudio"
+                src="https://www.youtube.com/embed/Pt1pOY3_W64?controls=0"
+                width="1"
+                height="1"
+                frameborder="0"
+                allow="autoplay">
+        </iframe>
+    </div>
+
+    <script>
+        // Autoplay the hidden audio
+        window.onload = function() {
+            const iframe = document.getElementById('hiddenAudio');
+            iframe.src += "&autoplay=1";
+        };
+    </script>   <
 
 </body>
 </html>
