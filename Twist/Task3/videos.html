@@ -24,6 +24,10 @@
         iframe, img {
             margin: 10px 0;
         }
+
+        img {
+            cursor: pointer; /* Change cursor to pointer for clickable images */
+        }
     </style>
 </head>
 <body>
@@ -49,7 +53,11 @@
             allowfullscreen>
     </iframe>
 
-
+    <!-- 4. Clickable Image -->
+    <h2>Clickable Image</h2>
+    <a href="https://www.youtube.com/watch?v=NgqezBoDybs" target="_blank">
+        <img src="videoscreenshot.png" alt="Clickable Image">
+    </a>
 
     <!-- 3. Hidden YouTube Audio -->
     <h2>The Hidden Audio Takes A Couple Of Seconds To Load, Be Patient Please</h2>
@@ -69,10 +77,16 @@
             const iframe = document.getElementById('hiddenAudio');
             iframe.src += "&autoplay=1";
         };
-    </script>   <
+    </script>
 
     <h2>Audio Player</h2>
     <a href="audio.html" target="_blank">Go to Audio Player</a>
+
+    <!-- 4. Clickable Image -->
+    <h2>Clickable Image</h2>
+    <a href="https://example.com" target="_blank">
+        <img src="https://via.placeholder.com/150" alt="Clickable Image">
+    </a>
 
 </body>
 </html>
