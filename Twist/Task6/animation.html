@@ -110,15 +110,16 @@
             margin: 0 auto; /* Centers the sprite horizontally */
             background: url('moon.png') no-repeat center / contain; /* Centers the sprite and prevents cropping */
             animation: spriteAnimation 1s steps(8) infinite;
+            animation-fill-mode: forwards;
         }
 
         @keyframes spriteAnimation {
             from {
-                background-position: 600px;
+                background-position: 0px;
             }
 
             to {
-                background-position: 200px;
+                background-position: -800px;
             }
         }
     </style>
