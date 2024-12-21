@@ -1,0 +1,133 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creative CSS Poem</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1e1e2f;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            position: relative;
+        }
+
+        .line {
+            position: absolute;
+            opacity: 0;
+            left: -150px;
+            font-size: 2rem;
+        }
+
+        .line1 {
+            animation: fadeInMove 2s 0.5s forwards, scaleUp 2s 0.5s forwards;
+            color: #ff6f61;
+        }
+
+        .line2 {
+            animation: fadeInMove 2s 1.5s forwards, rotateText 2s 1.5s forwards;
+            color: #ffa41b;
+        }
+
+        .line3 {
+            animation: fadeInMove 2s 2.5s forwards, waveText 2s 2.5s forwards;
+            color: #6ec1e4;
+        }
+
+        .line4 {
+            animation: fadeInMove 2s 3.5s forwards, bounceText 2s 3.5s forwards;
+            color: #6ee7b7;
+        }
+
+        @keyframes fadeInMove {
+            from {
+                opacity: 0;
+                left: -150px;
+            }
+
+            to {
+                opacity: 1;
+                left: 0;
+            }
+        }
+
+        @keyframes scaleUp {
+            from {
+                transform: scale(0.8);
+            }
+
+            to {
+                transform: scale(1.2);
+            }
+        }
+
+        @keyframes rotateText {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes waveText {
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes bounceText {
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(10px);
+            }
+        }
+
+        .sprite {
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            bottom: 10px;
+            background: url('https://upload.wikimedia.org/wikipedia/commons/5/54/Spritesheet.png') left top;
+            animation: spriteAnimation 1s steps(8) infinite;
+        }
+
+        @keyframes spriteAnimation {
+            from {
+                background-position: 0px;
+            }
+
+            to {
+                background-position: -400px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="line line1">The moonlight whispers secrets untold,</div>
+        <div class="line line2">Dancing shadows, a story unfolds.</div>
+        <div class="line line3">A melody of stars that brightly gleam,</div>
+        <div class="line line4">Awakens the world in a timeless dream.</div>
+        <div class="sprite"></div>
+    </div>
+</body>
+</html>
