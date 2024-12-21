@@ -25,6 +25,15 @@
             text-align: center;
         }
 
+        .sprite {
+            width: 100px; /* Ensures the sprite has a defined width */
+            height: 100px; /* Ensures the sprite has a defined height */
+            position: center; /* Centers the sprite horizontally */
+            background: url('moon.png') no-repeat center / contain; /* Centers the sprite and prevents cropping */
+            animation: spriteAnimation 1s steps(8) infinite;
+            animation-fill-mode: forwards;
+        }
+
         .line {
             position: center;
             opacity: 0;
@@ -104,14 +113,7 @@
             }
         }
 
-        .sprite {
-            width: 100px; /* Ensures the sprite has a defined width */
-            height: 100px; /* Ensures the sprite has a defined height */
-            margin: 0 auto; /* Centers the sprite horizontally */
-            background: url('moon.png') no-repeat center / contain; /* Centers the sprite and prevents cropping */
-            animation: spriteAnimation 1s steps(8) infinite;
-            animation-fill-mode: forwards;
-        }
+        
 
         @keyframes spriteAnimation {
             from {
