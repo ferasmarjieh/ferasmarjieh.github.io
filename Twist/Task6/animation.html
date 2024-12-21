@@ -104,11 +104,10 @@
         }
 
         .sprite {
-            width: 50px;
-            height: 50px;
-            position: absolute;
-            bottom: 10px;
-            background: url('moon.png') left top; /* Use your local file name */
+            width: 100px; /* Ensures the sprite has a defined width */
+            height: 100px; /* Ensures the sprite has a defined height */
+            margin: 0 auto; /* Centers the sprite horizontally */
+            background: url('moon.png') no-repeat center / contain; /* Centers the sprite and prevents cropping */
             animation: spriteAnimation 1s steps(8) infinite;
         }
 
@@ -125,11 +124,12 @@
 </head>
 <body>
     <div class="container">
+        <div class="sprite"></div>
         <div class="line line1">The moonlight whispers secrets untold,</div>
         <div class="line line2">Dancing shadows, a story unfolds.</div>
         <div class="line line3">A melody of stars that brightly gleam,</div>
         <div class="line line4">Awakens the world in a timeless dream.</div>
-        <div class="sprite"></div>
+
     </div>
 </body>
 </html>
