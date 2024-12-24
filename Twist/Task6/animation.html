@@ -10,7 +10,7 @@
             background-color: #1e1e2f;
             color: white;
             display: flex;
-            justify-content: flex-start;
+            justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
@@ -28,7 +28,10 @@
         .sprite {
             width: 100px; /* Ensures the sprite has a defined width */
             height: 100px; /* Ensures the sprite has a defined height */
-            position: center; /* Centers the sprite horizontally */
+            position: absolute; /* Centers the sprite horizontally */
+            left: 50%;
+            right: 50%;
+            top: 30%;
             background: url('moon.png') no-repeat center / contain; /* Centers the sprite and prevents cropping */
             animation: spriteAnimation 1s steps(8) infinite;
         }
@@ -110,8 +113,23 @@
             50% {
                 transform: translateY(10px);
             }
-        }
 
+        }
+        @keyframes spriteanimation {
+
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+
+
+
+        }
         
 
         
