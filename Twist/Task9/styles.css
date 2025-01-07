@@ -1,0 +1,36 @@
+/* CSS File (styles.css) */
+body {
+    font-family: Arial, sans-serif; /* Sets the font style for the document */
+    margin-top: 20%; /* Adds space around the body content */
+    background-color: #f0f8ff; /* Sets a light blue background color */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+div {
+    margin: 15px; /* Adds 15px of space below each <div> */
+}
+
+h1 {
+    color: #1e90ff; /* Sets the heading text color to Dodger Blue */
+}
+input, button {
+    margin: 5px; /* Adds space around inputs and buttons */
+}
+input {
+    border: 1px solid #1e90ff; /* Adds a blue border around input fields */
+    padding: 5px; /* Adds padding inside the input fields */
+}
+button {
+    background-color: #1e90ff; /* Sets the button background color to blue */
+    color: white; /* Sets the button text color to white */
+    border: none; /* Removes the border around the button */
+    padding: 10px; /* Adds padding inside the button */
+    cursor: pointer; /* Changes the cursor to a pointer when hovering */
+}
+button:hover {
+    background-color: #4682b4; /* Changes the button color on hover */
+}
+#result {
+    color: #1e90ff; /* Sets the result text color to blue */
+}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"> <!-- Sets the character encoding for the document -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ensures proper rendering on mobile devices -->
+    <title>Simple Calculator</title> <!-- Title of the page -->
+    <link rel="stylesheet" href="styles.css"> <!-- Link to external CSS file -->
+</head>
+<body>
+    <h1>Simple Calculator</h1> <!-- Main heading for the calculator -->
+    <div>
+        <label for="num1">Number 1:</label> <!-- Label for first input -->
+        <input type="text" id="num1" /> <!-- Input field for the first number -->
+    </div>
+    <div>
+        <label for="num2">Number 2:</label> <!-- Label for second input -->
+        <input type="text" id="num2" /> <!-- Input field for the second number -->
+    </div>
+    <div>
+        <button onclick="calculate('add')">Add</button> <!-- Button to trigger addition -->
+        <button onclick="calculate('subtract')">Subtract</button> <!-- Button to trigger subtraction -->
+        <button onclick="calculate('multiply')">Multiply</button> <!-- Button to trigger multiplication -->
+        <button onclick="calculate('divide')">Divide</button> <!-- Button to trigger division -->
+    </div>
+    <div id="result" style="margin-top: 20px; font-weight: bold;"></div> <!-- Div to display the result -->
+
+    <script src="script.js"></script> <!-- Link to external JavaScript file -->
+</body>
+</html>
