@@ -1,0 +1,69 @@
+﻿body {
+    margin: 0; /* Removes default margin */
+    overflow: hidden; /* Prevents scrolling */
+    background-color: black; /* Sets background to black */
+}
+
+#game-container {
+    position: relative; /* Positions elements inside relatively */
+    width: 100vw; /* Full viewport width */
+    height: 100vh; /* Full viewport height */
+    display: flex; /* Enables flexbox for centering */
+    justify-content: center; /* Centers content horizontally */
+    align-items: center; /* Centers content vertically */
+    background: url('assets/background.jpg') no-repeat center center; /* Sets background image */
+    background-size: cover; /* Covers entire canvas */
+}
+
+#gameCanvas {
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    
+}
+
+#note-popup {
+    position: absolute; /* Positions the popup absolutely */
+    top: 50%; /* Moves it to center vertically */
+    left: 50%; /* Moves it to center horizontally */
+    transform: translate(-50%, -50%); /* Centers the popup */
+    background: rgba(0, 0, 0, 0.8); /* Dark background with transparency */
+    padding: 20px; /* Adds space around content */
+    border-radius: 10px; /* Rounds the corners */
+    text-align: center; /* Centers text */
+    display: none; /* Hides popup by default */
+}
+
+    #note-popup img {
+        max-width: 100%; /* Ensures image fits within the popup */
+        height: auto; /* Maintains aspect ratio */
+    }
+
+#close-popup {
+    margin-top: 10px; /* Adds space above the button */
+    padding: 5px 10px; /* Adds padding inside the button */
+    cursor: pointer; /* Changes cursor to pointer when hovered */
+}
+
+#note-display {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    display: none;
+}
+
+    #note-display img {
+        max-width: 100%;
+        height: auto;
+    }
+
+#close-note {
+    margin-top: 10px;
+    padding: 5px 10px;
+    cursor: pointer;
+}

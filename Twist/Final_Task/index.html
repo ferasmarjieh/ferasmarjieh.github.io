@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+ <!-- Defines the document type as HTML5 -->
+<html lang="en">
+ <!-- Sets the language to English -->
+<head>
+    <meta charset="UTF-8"> <!-- Defines character encoding as UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ensures responsiveness on mobile devices -->
+    <title>Abandoned Military Base Game</title> <!-- Sets the title of the webpage -->
+    <link rel="stylesheet" href="styles.css"> <!-- Links to an external CSS file for styling -->
+</head>
+<body>
+    <div id="game-container">
+        <!-- Container for the game elements -->
+        <canvas id="gameCanvas"></canvas> <!-- The canvas element where the game will be rendered -->
+        <div id="note-popup" class="hidden">
+            <!-- Hidden popup for displaying note images -->
+            <img id="note-image" src="" alt="Note"> <!-- Placeholder for the note image -->
+            <button id="close-popup">Close</button> <!-- Button to close the note popup -->
+        </div>
+        <div id="note-display">
+            <!-- Container for displaying a separate image when a note is clicked -->
+            <img id="note-full-image" src="" alt="Full Note">
+            <button id="close-note">Close</button>
+        </div>
+    </div>
+    <script src="script.js"></script> <!-- Links to an external JavaScript file for game logic -->
+</body>
+</html>
