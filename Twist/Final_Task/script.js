@@ -34,7 +34,7 @@ let notes = [
 // Player object
 let player = {
     x: 100,
-    y: 100,
+    y: 300,
     width: 55, // Width of a single frame
     height: 120, // Height of a single frame
     speed: 5,
