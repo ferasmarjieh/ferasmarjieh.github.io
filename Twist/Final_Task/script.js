@@ -1,119 +1,129 @@
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
-ctx.imageSmoothingEnabled = false; // Ensures pixel-perfect rendering
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+ctx.imageSmoothingEnabled = false;
+
+// Define a fixed base resolution
+const baseWidth = 1920;
+const baseHeight = 1080;
+canvas.width = baseWidth;
+canvas.height = baseHeight;
+
+// Scaling factor to adapt to different screen sizes
+let scaleX, scaleY, scale;
+
+function resizeCanvas() {
+    scaleX = window.innerWidth / baseWidth;
+    scaleY = window.innerHeight / baseHeight;
+    scale = Math.min(scaleX, scaleY); // Maintain aspect ratio
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    ctx.setTransform(scale, 0, 0, scale, 0, 0); // Apply scaling transformation
+}
+
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
+
 const noteDisplay = document.getElementById('note-display');
 const noteFullImage = document.getElementById('note-full-image');
 const closeNoteBtn = document.getElementById('close-note');
 
 // Load player sprite sheet
 const playerWalkImg = new Image();
-playerWalkImg.src = 'assets/walking_sheet.png'; // Ensure correct path
+playerWalkImg.src = 'assets/walking_sheet.png';
 playerWalkImg.onload = () => {
-    gameLoop(); // Start game only after sprite loads
+    gameLoop();
 };
 
 // Load note images
 const note1Img = new Image();
 note1Img.src = 'assets/note1.png';
-
 const note2Img = new Image();
 note2Img.src = 'assets/note2.png';
-
 const note3Img = new Image();
 note3Img.src = 'assets/note3.png';
 
-// Array to store notes with positions
 let notes = [
-    { x: 550, y: 300, image: note1Img },
-    { x: 1000, y: 700, image: note2Img },
-    { x: 1450, y: 120, image: note3Img }
+    { x: 650 / baseWidth, y: 300 / baseHeight, image: note1Img },
+    { x: 1100 / baseWidth, y: 530 / baseHeight, image: note2Img },
+    { x: 1700 / baseWidth, y: 120 / baseHeight, image: note3Img }
 ];
 
-// Player object
 let player = {
     x: 100,
     y: 300,
-    width: 55, // Width of a single frame
-    height: 120, // Height of a single frame
-    speed: 5,
-    frameX: 0, // Current frame index
-    maxFrame: 3, // Total frames (0,1,2,3)
-    frameDelay: 4, // Speed of animation (higher = slower)
-    frameCounter: 0, // Counter to slow down animation
-    moving: false, // Movement state
+    width: 55,
+    height: 120,
+    speed: 2,
+    frameX: 0,
+    maxFrame: 3,
+    frameDelay: 4,
+    frameCounter: 0,
+    moving: false,
+    targetX: 100,
+    targetY: 300
 };
 
-// Store key states
-let keys = {};
+canvas.addEventListener('click', (event) => {
+    let rect = canvas.getBoundingClientRect();
+    let clickX = (event.clientX - rect.left) / scale;
+    let clickY = (event.clientY - rect.top) / scale;
 
-// Event listeners for movement
-document.addEventListener('keydown', (e) => {
-    keys[e.key] = true;
+    player.targetX = clickX;
+    player.targetY = clickY;
     player.moving = true;
 });
-document.addEventListener('keyup', (e) => {
-    keys[e.key] = false;
-    player.moving = false;
-});
 
-// Update player movement
 function update() {
-    if (keys['w']) player.y -= player.speed;
-    if (keys['s']) player.y += player.speed;
-    if (keys['a']) player.x -= player.speed;
-    if (keys['d']) player.x += player.speed;
+    let dx = player.targetX - player.x;
+    let dy = player.targetY - player.y;
+    let distance = Math.sqrt(dx * dx + dy * dy);
 
-    // Handle animation frames
+    if (distance > 2) {
+        player.x += (dx / distance) * player.speed;
+        player.y += (dy / distance) * player.speed;
+    } else {
+        player.moving = false;
+    }
+
     if (player.moving) {
         player.frameCounter++;
         if (player.frameCounter >= player.frameDelay) {
             player.frameCounter = 0;
-            player.frameX = (player.frameX + 1) % (player.maxFrame + 1); // Loop frames
+            player.frameX = (player.frameX + 1) % (player.maxFrame + 1);
         }
     } else {
-        player.frameX = 0; // Reset to idle frame when not moving
+        player.frameX = 0;
     }
 }
 
-// Draw everything
 function draw() {
-    // Clear the entire canvas before redrawing
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    // Redraw background image
     const background = new Image();
-    background.src = 'assets/background.png'; // Ensure correct path
-    ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+    background.src = 'assets/background.png';
+    ctx.drawImage(background, 0, 0, baseWidth, baseHeight);
 
-    // Draw player from sprite sheet
     ctx.drawImage(
         playerWalkImg,
-        player.frameX * player.width, 0, // Crop position (x coordinate in sheet)
-        player.width, player.height, // Crop size (frame size)
-        player.x, player.y, // Player position
-        player.width, player.height // Final display size
+        player.frameX * player.width, 0,
+        player.width, player.height,
+        player.x, player.y,
+        player.width, player.height
     );
 
-    // Draw each note
     notes.forEach(note => {
-        ctx.drawImage(note.image, note.x, note.y, 40, 40);
+        ctx.drawImage(note.image, note.x * baseWidth, note.y * baseHeight, 40, 40);
     });
 }
 
-
-
-// Checks if player is close enough to interact with a note
 function checkInteraction() {
     notes.forEach(note => {
-        let dx = player.x - note.x;
-        let dy = player.y - note.y;
+        let dx = player.x - (note.x * baseWidth);
+        let dy = player.y - (note.y * baseHeight);
         let distance = Math.sqrt(dx * dx + dy * dy);
-
-        if (distance < 50) { // If player is close enough
-            noteFullImage.src = note.image.src.replace(".png", "_full.jpg"); // Assuming full image follows a naming pattern
-            noteDisplay.style.display = 'block'; // Show the new note display
+        if (distance < 50) {
+            noteFullImage.src = note.image.src.replace(".png", "_full.jpg");
+            noteDisplay.style.display = 'block';
         }
     });
 }
@@ -122,19 +132,22 @@ closeNoteBtn.addEventListener('click', () => {
     noteDisplay.style.display = 'none';
 });
 
-// Click event to check for interactions with notes
-canvas.addEventListener('click', () => {
+gameCanvas.addEventListener('click', () => {
     checkInteraction();
 });
 
-// Closes the popup when the button is clicked
 document.getElementById('close-popup').addEventListener('click', () => {
     document.getElementById('note-popup').style.display = 'none';
 });
 
-// Main game loop: updates game logic and redraws
 function gameLoop() {
-    update(); // Update player position
-    draw(); // Redraw everything
-    requestAnimationFrame(gameLoop); // Calls the loop again
+    update();
+    draw();
+    requestAnimationFrame(gameLoop);
 }
+
+document.body.style.opacity = 0;
+window.onload = function () {
+    document.body.style.transition = "opacity 1s";
+    document.body.style.opacity = 1;
+};
